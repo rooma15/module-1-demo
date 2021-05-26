@@ -1,6 +1,8 @@
 It`s just line 1 in second file!
 It`s just line 2 in file!
 It`s just line 3 in file!
+It`s line 2 in second file!
+It`s line 3 in second file!
 It`s just line 4 in second file!
 It`s just line 5 in second file!
 It`s just line 6 in second file!
