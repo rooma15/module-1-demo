@@ -1,0 +1,120 @@
+git init
+vim README.md
+git add README.md
+git commit -m "README added"
+git checkout -b develop
+git checkout -b git_task
+git checkout -b git_0
+vim README.md
+(some changes)
+git add README.md
+git commit -m "README changed"
+git checkout git_task
+git merge git_0 --no-ff
+git checkout develop
+git merge git_task --no-ff
+git checkout master
+git merge develop --no-ff
+git checkout git_task
+git checkout -b git_1
+git checkout -b git_2 git_task
+git checkout git_1
+vim firstFile.txt
+(edit file)
+git add firstFile.txt
+git commit -m "added firstFile"
+vim secondFile.txt
+(edit file)
+git add secondFile.txt
+git commit -m "added secondFile"
+git checkout git_2
+git merge git_1 --no-ff
+vim secondFile.txt
+(changes)
+git add secondFile.txt
+git commit -m "updated secondFile"
+git checkout git_1
+vim secondFile.txt
+(changes)
+git add secondFile.txt
+git commit -m "updated secondFile"
+git merge git_2 --no-ff
+vim secondFile.txt
+(leave 4 lines)
+git add secondFile.txt
+git commit -m "merged secondFile"
+git checkout git_1
+vim firstFile.txt
+(cahnges)
+git add firstFile.txt
+git commit -m "modified firstFile first time"
+vim firstFile.txt
+(cahnges)
+git add firstFile.txt
+git commit -m "modified firstFile second time"
+git format-patch -1 $(get rev-parse @~)
+git checkout git_2
+git apply --stat 0001-modified-firstFile-first-time.patch
+git apply --check 0001-modified-firstFile-first-time.patch
+git git am --signoff < 0001-modified-firstFile-first-time.patch
+git checkout git_1
+git rev-parse HEAD
+(copy sha1 of commit sha1 = e807b7ffa5e09a52bbf2f4b7dff6bb2dac27dca)
+git checkout git_2
+git cherry-pick fe807b7ffa5e09a52bbf2f4b7dff6bb2dac27dca
+git reset --soft HEAD~2
+git commit -m "concatenated two last commits"
+git commit --amend --author="Roman <degty9482@gmail.com>"
+git commit --amend --date="$(date)"
+git commit --amend --no-edit -m "edited commit message"
+vim thirdFile.txt
+(some changes)
+git add thirdFile.txt
+git commit --amend --no-edit
+git revert HEAD
+vim thirdFile.txt
+(some changes)
+git add thirdFile.txt
+git commit -m "added thirdFile"
+git reset --hard HEAD~2
+git remote add demo <url>
+git push demo git_1
+git push demo git_2
+git clone <url>
+git checkout git_1
+vim firstFile.txt
+(some changes)
+git add firstFile.txt
+git commit -m "changed firstFile in second folder"
+git push demo git_1
+(going to folder 1)
+git checkout git_1
+git stash save "first stash"
+vim firstFile.txt
+(some changes)
+vim firstFile.txt
+(some changes)
+git stash save "second stash"
+git pull demo git_1
+git stash pop
+(resolving conflict manually)
+git add firstFile.txt
+git commit -m "merged 18"
+git push demo git_1
+git checkout -p stash
+git checkout -b git_3 git_task
+vim doubtingFile.txt
+git add doubtingFile.txt
+git commit -m "added doubtingFile"
+(vim doubltingFile.txt
+ (some changes)
+ git add doubtingFile.txt
+ git commit -m "changed doubtingFile 1 time")*5
+git rebase -i HEAD~5
+**
+reword added 5 lines into file
+squash changed doubtingFile 4 time
+squash changed doubtingFile 3 time
+squash changed doubtingFile 2 time
+squash changed doubtingFile 1 time
+**
